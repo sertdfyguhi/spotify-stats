@@ -59,3 +59,11 @@ class ListeningHistoryReader:
         temp_dict.update(agg_funcs)
 
         return self.history_df.groupby(groupby).agg(temp_dict)
+
+    def by_year_and_process(self, year, groupby, agg_funcs={}):
+        by_year_df = self.history_df.loc[self.history_df["ts"].dt.year == year]
+
+        temp_dict = AGG_FUNCS.copy()
+        temp_dict.update(agg_funcs)
+
+        return by_year_df.groupby(groupby).agg(temp_dict)

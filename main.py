@@ -11,11 +11,12 @@ dpg.create_viewport(title="Spotify Stats", width=WINDOW_WIDTH, height=WINDOW_HEI
 reader = None
 
 with dpg.font_registry():
-    default_font = dpg.add_font("font/SFMono-Regular.otf", 14)
+    dpg.add_font("font/SFMono-Regular.otf", 14, tag="default_font")
+    dpg.add_font("font/SFMono-Bold.otf", 14, tag="bold_font")
 
 with dpg.window(show=False) as main_window:
     with dpg.menu_bar():
-        current_window = WINDOWS.keys()[0]
+        current_window = list(WINDOWS.keys())[0]
 
         def change_window_callback(window):
             global current_window
@@ -69,13 +70,14 @@ with dpg.window(
     height=WINDOW_HEIGHT / 2,
     pos=(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 4),
 ):
-    dpg.add_input_text(label="Folder Path", width=WINDOW_WIDTH / 5, tag="folder_path")
-    dpg.add_button(
-        label="Open Directory", callback=lambda: dpg.show_item("file_dialog")
-    )
-    dpg.add_button(label="Load", callback=load_folder_callback, tag="load_button")
+    with dpg.group(horizontal=True):
+        dpg.add_input_text(width=WINDOW_WIDTH / 5, tag="folder_path")
+        dpg.add_button(
+            label="Find Directory", callback=lambda: dpg.show_item("file_dialog")
+        )
+    dpg.add_button(label="Load Data", callback=load_folder_callback, tag="load_button")
 
-dpg.bind_font(default_font)
+dpg.bind_font("default_font")
 
 if __name__ == "__main__":
     dpg.setup_dearpygui()
