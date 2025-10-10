@@ -46,14 +46,14 @@ def init(reader, parent):
         all_df = reader.process(
             ["master_metadata_album_album_name", "master_metadata_album_artist_name"]
         )
-        previous_year = "All_albums"
+        curr_year = "All_albums"
 
         def change_year(year):
-            nonlocal table, previous_year
+            nonlocal table, curr_year
 
-            dpg.bind_item_font(previous_year, "default_font")
+            dpg.bind_item_font(curr_year, "default_font")
             dpg.bind_item_font(str(year) + "_albums", "bold_font")
-            previous_year = str(year) + "_albums"
+            curr_year = str(year) + "_albums"
 
             dpg.delete_item(table)
 

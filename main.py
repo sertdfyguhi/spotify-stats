@@ -75,6 +75,7 @@ with dpg.window(
         dpg.add_button(
             label="Find Directory", callback=lambda: dpg.show_item("file_dialog")
         )
+
     dpg.add_button(label="Load Data", callback=load_folder_callback, tag="load_button")
 
 dpg.bind_font("default_font")

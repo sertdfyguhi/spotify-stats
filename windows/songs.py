@@ -46,14 +46,14 @@ def init(reader, parent):
         parent=parent,
     ) as window:
         all_df = reader.process("spotify_track_uri")
-        previous_year = "All_songs"
+        curr_year = "All_songs"
 
         def change_year(year):
-            nonlocal table, previous_year
+            nonlocal table, curr_year
 
-            dpg.bind_item_font(previous_year, "default_font")
+            dpg.bind_item_font(curr_year, "default_font")
             dpg.bind_item_font(str(year) + "_songs", "bold_font")
-            previous_year = str(year) + "_songs"
+            curr_year = str(year) + "_songs"
 
             dpg.delete_item(table)
 
