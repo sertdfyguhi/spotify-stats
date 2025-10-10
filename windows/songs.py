@@ -70,7 +70,7 @@ def init(reader, parent):
             dpg.add_button(
                 label="All",
                 tag="All_songs",
-                callback=(lambda x: (lambda: change_year(x)))("All"),
+                callback=lambda: change_year("All"),
             )
             dpg.bind_item_font("All_songs", "bold_font")
 
